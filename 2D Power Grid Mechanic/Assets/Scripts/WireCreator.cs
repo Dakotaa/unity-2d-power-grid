@@ -20,12 +20,14 @@ public class WireCreator : MonoBehaviour {
 		this.start = output.transform.position;
 		this.end = input.transform.position;
         Vector3 offset = end - start;
-        Vector3 scale = new Vector3(width, offset.magnitude / 2.0f, this.width);
+        Vector3 scale = new Vector3(this.width, offset.magnitude / 2.0f, this.width);
         Vector3 position = start + (offset / 2.0f);
         position.z += 0.1f;
         GameObject wire = Instantiate(wirePrefab, position, Quaternion.identity);
         wire.transform.up = offset;
-        wire.transform.localScale = scale;
+        wire.transform.GetChild(0).localScale = scale;
+		wire.transform.GetChild(1).localScale = new Vector3(0.1f, width, width);
+		wire.transform.GetChild(1).position = end;
 		Wire wireScript = wire.GetComponent<Wire>();    // grab the script component of the created wire
 		wireScript.SetSource(output);	// set the output source for the wire
 		wireScript.SetDest(input);      // set the input source for the wire
@@ -47,7 +49,9 @@ public class WireCreator : MonoBehaviour {
 		ghostWire = Instantiate(ghostWirePrefab, position, Quaternion.identity);
 		ghostWire.name = "Wire Ghost";
 		ghostWire.transform.up = offset;
-		ghostWire.transform.localScale = scale;
+		ghostWire.transform.GetChild(0).localScale = scale;
+		ghostWire.transform.GetChild(1).localScale = new Vector3(0.1f, width, width);
+		ghostWire.transform.GetChild(1).position = end;
 	}
 
 

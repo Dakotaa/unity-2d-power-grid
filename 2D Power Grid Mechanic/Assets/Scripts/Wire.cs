@@ -25,12 +25,7 @@ public class Wire : MonoBehaviour {
 		return this.powered;
 	}
 
-	private void OnMouseDown() {
-		Delete();
-	}
-
-	void Delete() {
-		print("Delete");
+	public void Delete() {
 		source.RemoveWire(this);
 		dest.RemoveWire(this);
 		Destroy(this.gameObject);

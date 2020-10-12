@@ -130,8 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe26af3c014c320478655d26e07999ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
-  status: 0
+  powered: 0
   outputs:
   - {fileID: 5079692909442471057}
   - {fileID: 3854699206459668419}
@@ -148,7 +147,7 @@ GameObject:
   - component: {fileID: 3772648053387192078}
   - component: {fileID: 6303058972322067241}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Power Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
