@@ -15,16 +15,19 @@ public class PowerOutput : MonoBehaviour {
         connected = false;
     }
 
-	void Update() {
+	void Update() {}
+
+	public void Signal() {
 		if (connected) { // when there are connections, update them
 			foreach (Wire wire in wires) {
 				wire.SetPowered(powered);
 			}
 		}
-    }
+	}
 
 	public void SetPowered(bool powered) {
 		this.powered = powered;
+		Signal();
 	}
 
 	public bool IsPowered() {
@@ -34,6 +37,7 @@ public class PowerOutput : MonoBehaviour {
 	public void AddWire(Wire wire) {
 		wires.Add(wire);
 		connected = true;
+		Signal();
 	}
 
 	public void RemoveWire(Wire wire) {
@@ -41,6 +45,7 @@ public class PowerOutput : MonoBehaviour {
 		if (wires.Count == 0) {
 			connected = false;
 		}
+		Signal();
 	}
 
     private void OnMouseDown() {

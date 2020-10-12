@@ -7,19 +7,25 @@ public class SimpleNode : PowerObject {
     public PowerInput[] inputs;
     public GameObject box;
 
-    void Start() {
-    }
+    void Start() {}
+    void Update() {}
 
-    // Update is called once per frame
-    void Update() {
-        if (powered) {
-            setColour(Color.green);
-        } else {
-            setColour(Color.red);
-        }
-    }
+	public override void Signal() {
+		print("Node signalled");
+		powered = false;
+		foreach (PowerInput input in inputs) {
+			if (input.IsPowered()) {
+				powered = true;
+			}
+		}
+		if (powered) {
+			SetColour(Color.green);
+		} else {
+			SetColour(Color.red);
+		}
+	}
 
-    void setColour(Color colour) {
+	void SetColour(Color colour) {
         box.GetComponent<Renderer>().material.color = colour;
     }
 }

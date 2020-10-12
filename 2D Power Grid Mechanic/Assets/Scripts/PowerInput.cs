@@ -16,15 +16,21 @@ public class PowerInput : MonoBehaviour {
 	}
 
 
-    void Update() {
+    void Update() {}
+
+	public void Signal() {
 		if (connected) { // when there are connections, update them
-			foreach (Wire wire in wires) {
+			foreach (Wire wire in wires) {	// check each connected wire
 				if (wire.IsPowered()) {
-					powered = true;
-					UpdatePowerObject();
+					print("POWERING INPUT");
+					this.powered = true;
+					powerObject.Signal();
+					return;	// not necessary to search for other power sources
 				}
 			}
 		}
+		this.powered = false; // not connected, or a powered wire was not found
+		powerObject.Signal();
 	}
 
 	public void SetPowered(bool powered) {
@@ -39,28 +45,17 @@ public class PowerInput : MonoBehaviour {
 	public void AddWire(Wire wire) {
 		wires.Add(wire);
 		connected = true;
-		UpdatePowerObject();
+		Signal();
 	}
 
 	public void RemoveWire(Wire wire) {
 		wires.Remove(wire);
 		if (wires.Count == 0) {
+			print("NO WIRES LEFT");
 			powered = false;
 			connected = false;
-			UpdatePowerObject();
 		}
-	}
-
-	public void UpdatePowerObject() {
-		if (this.powered) { // if this input is powered, but the game object is not, power it
-			if (!powerObject.GetPowered()) {
-				powerObject.SetPowered(true);
-			}
-		} else {
-			if (powerObject.GetPowered()) {
-				powerObject.SetPowered(false);
-			}
-		}
+		Signal();
 	}
 
 	private void OnMouseEnter() {

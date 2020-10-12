@@ -19,6 +19,7 @@ public class Wire : MonoBehaviour {
 	public void SetPowered(bool powered) {
 		this.powered = powered;
 		dest.SetPowered(powered);
+		dest.Signal();
 	}
 
 	public bool IsPowered() {

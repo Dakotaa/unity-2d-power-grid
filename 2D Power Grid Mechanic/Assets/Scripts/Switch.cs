@@ -6,34 +6,42 @@ public class Switch : PowerObject {
 	private bool activated = false;
 	public PowerInput input;
 	public PowerOutput output;
+	public TextMesh statusIndicator, powerIndicator;
 
-	void Start() {
-    }
+	void Start() {}
 
-	void Update() {
-		if (powered) {
-			if (activated) {
-				setColour(Color.green);
-			} else {
-				setColour(Color.red);
-			}
+	void Update() {}
+
+	public override void Signal() {
+		powered = input.IsPowered();
+
+		if (activated) {
+			statusIndicator.text = "ON";
+			setColour(Color.green);
 		} else {
+			statusIndicator.text = "OFF";
+			setColour(Color.red);
+		}
+
+		if (this.powered) {
+			powerIndicator.text = "100%\nPOWER";
+		} else {
+			powerIndicator.text = "0%\nPOWER";
 			setColour(Color.grey);
 		}
+
+		output.SetPowered(powered && activated);
+		output.Signal();
 	}
 
 	void Activate() {
 		activated = true;
-		powered = input.IsPowered();
-		output.SetPowered(powered);
-		setColour(Color.green);
+		Signal();
 	}
 
 	void Deactivate() {
 		activated = false;
-		powered = false;
-		output.SetPowered(powered);
-		setColour(Color.gray);
+		Signal();
 	}
 
 	private void OnMouseDown() {

@@ -14,7 +14,11 @@ public class Source : PowerObject
 		}
     }
 
-    void Update() {
-        
-    }
+    void Update() {}
+
+	public override void Signal() {
+		foreach (PowerOutput output in outputs) {
+			output.SetPowered(true);    // set each output to powered
+		}
+	}
 }
