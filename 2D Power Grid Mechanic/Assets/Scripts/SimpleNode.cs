@@ -7,11 +7,11 @@ public class SimpleNode : PowerObject {
     public PowerInput[] inputs;
     public GameObject box;
 
-    void Start() {}
+    void Start() {
+	}
     void Update() {}
 
 	public override void Signal() {
-		print("Node signalled");
 		powered = false;
 		foreach (PowerInput input in inputs) {
 			if (input.IsPowered()) {

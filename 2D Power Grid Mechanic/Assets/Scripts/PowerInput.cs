@@ -5,12 +5,15 @@ using UnityEngine;
 public class PowerInput : MonoBehaviour {
     public PowerObject powerObject;
     public WireCreator wireCreator;
+	public Editor editor;
 	private List<Wire> wires;   // list of wires connected to this input 
 	private bool connected; // whether this input is connected to wires
 	private bool powered, over;
+	public AudioSource sparkSound;
 
     void Start() {
         wireCreator = FindObjectOfType(typeof(WireCreator)) as WireCreator; // get the wire creator
+		editor = FindObjectOfType(typeof(Editor)) as Editor;
 		wires = new List<Wire>();
 		connected = false;
 	}
@@ -22,7 +25,6 @@ public class PowerInput : MonoBehaviour {
 		if (connected) { // when there are connections, update them
 			foreach (Wire wire in wires) {	// check each connected wire
 				if (wire.IsPowered()) {
-					print("POWERING INPUT");
 					this.powered = true;
 					powerObject.Signal();
 					return;	// not necessary to search for other power sources
@@ -44,6 +46,10 @@ public class PowerInput : MonoBehaviour {
 
 	public void AddWire(Wire wire) {
 		wires.Add(wire);
+		if(wire.IsPowered()) {
+			print("POWERED WIRE");
+			sparkSound.Play();
+		}
 		connected = true;
 		Signal();
 	}
@@ -51,7 +57,6 @@ public class PowerInput : MonoBehaviour {
 	public void RemoveWire(Wire wire) {
 		wires.Remove(wire);
 		if (wires.Count == 0) {
-			print("NO WIRES LEFT");
 			powered = false;
 			connected = false;
 		}
@@ -59,14 +64,18 @@ public class PowerInput : MonoBehaviour {
 	}
 
 	private void OnMouseEnter() {
-		if (wireCreator.isCreating()) {
-			wireCreator.SnapToInput(this);
+		if (editor.GetMode() == 2) {
+			if (wireCreator.IsCreating()) {
+				wireCreator.SnapToInput(this);
+			}
 		}
 	}
 
 	private void OnMouseExit() {
-		if (wireCreator.isCreating()) {
-			wireCreator.Unsnap();
+		if (editor.GetMode() == 2) {
+			if (wireCreator.IsCreating()) {
+				wireCreator.Unsnap();
+			}
 		}
 	}
 }

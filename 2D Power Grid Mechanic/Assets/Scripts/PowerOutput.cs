@@ -5,12 +5,14 @@ using UnityEngine;
 public class PowerOutput : MonoBehaviour {
     public PowerObject powerObject; // associated powerable object
     public WireCreator wireCreator; // wirecreator - assigned on Start()
+	public Editor editor;
     private List<Wire> wires;   // list of wires connected to this output 
     private bool connected; // whether this output is connected to wires
 	private bool powered; // whether this output has power
 
     void Start() {
         wireCreator = FindObjectOfType(typeof(WireCreator)) as WireCreator;
+		editor = FindObjectOfType(typeof(Editor)) as Editor;
 		wires = new List<Wire>();
         connected = false;
     }
@@ -49,16 +51,14 @@ public class PowerOutput : MonoBehaviour {
 	}
 
     private void OnMouseDown() {
-		wireCreator.StartCreation(this);
+		if (editor.GetMode() == 2) {
+			wireCreator.StartCreation(this);
+		}
     }
 
 	private void OnMouseUp() {
-		wireCreator.FinishCreation();
+		if (editor.GetMode() == 2) {
+			wireCreator.FinishCreation();
+		}
 	}
-
-
-	private void OnMouseDrag() {
-	
-	}
-
 }

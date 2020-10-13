@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 abstract public class PowerObject : MonoBehaviour {
-	public bool powered;
+	public bool powered, connected;
 
 	public abstract void Signal();
 
@@ -14,6 +14,15 @@ abstract public class PowerObject : MonoBehaviour {
 
 	public bool GetPowered() {
 		return this.powered;
+	}
+
+	public void SetConnected(bool connected) {
+		this.connected = connected;
+		Signal();
+	}
+
+	public bool GetConnected() {
+		return this.connected;
 	}
 
 	void Start() {}

@@ -7,6 +7,8 @@ public class Wire : MonoBehaviour {
 	private PowerOutput source;	// source power output - start point
 	private PowerInput dest; // destination power intput - end point
 	private bool powered;
+	private WireCreator wireCreator;
+	private Editor editor;
 
 	public void SetSource(PowerOutput source) {
 		this.source = source;
@@ -27,16 +29,17 @@ public class Wire : MonoBehaviour {
 	}
 
 	public void Delete() {
-		source.RemoveWire(this);
-		dest.RemoveWire(this);
-		Destroy(this.gameObject);
+		if (editor.GetMode() == 2) {
+			source.RemoveWire(this);
+			dest.RemoveWire(this);
+			Destroy(this.gameObject);
+		}
 	}
 
 	void Start() {
-        
-    }
+		wireCreator = FindObjectOfType(typeof(WireCreator)) as WireCreator;
+		editor = FindObjectOfType(typeof(Editor)) as Editor;
+	}
 
-    void Update() {
-        
-    }
+    void Update() { }
 }

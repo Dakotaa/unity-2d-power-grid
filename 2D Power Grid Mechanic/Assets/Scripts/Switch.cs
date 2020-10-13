@@ -7,8 +7,11 @@ public class Switch : PowerObject {
 	public PowerInput input;
 	public PowerOutput output;
 	public TextMesh statusIndicator, powerIndicator;
+	public AudioSource toggle;
 
-	void Start() {}
+	void Start() {
+		toggle = GetComponent<AudioSource>();
+	}
 
 	void Update() {}
 
@@ -36,11 +39,13 @@ public class Switch : PowerObject {
 
 	void Activate() {
 		activated = true;
+		toggle.Play();
 		Signal();
 	}
 
 	void Deactivate() {
 		activated = false;
+		toggle.Play();
 		Signal();
 	}
 

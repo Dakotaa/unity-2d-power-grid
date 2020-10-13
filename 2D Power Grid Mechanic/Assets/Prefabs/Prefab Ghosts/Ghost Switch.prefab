@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 6958186298199661447}
   - component: {fileID: 5366608620724402901}
   m_Layer: 0
-  m_Name: Switch
+  m_Name: Ghost Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 305dc69acc4fc7e4e8204074c45b972b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input
       objectReference: {fileID: 0}
+    - target: {fileID: 6018131976722503654, guid: 8a0a297e2c00dfc45a2782d087d8e514, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 296bcc8ab5c895142aa3541fdc30bfb2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0a297e2c00dfc45a2782d087d8e514, type: 3}
 --- !u!4 &6058545418513826426 stripped
@@ -508,6 +512,10 @@ PrefabInstance:
       propertyPath: powerObject
       value: 
       objectReference: {fileID: 6958186298199661447}
+    - target: {fileID: 1259827507873802459, guid: 5f002e0f8ba06f249abce5345efaff37, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 296bcc8ab5c895142aa3541fdc30bfb2, type: 2}
     - target: {fileID: 1401400705253017476, guid: 5f002e0f8ba06f249abce5345efaff37, type: 3}
       propertyPath: m_Name
       value: Output

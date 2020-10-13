@@ -64,11 +64,11 @@ public class WireCreator : MonoBehaviour {
         }
     }
 
-	public void setCreating(bool b) {
+	public void SetCreating(bool b) {
         this.creatingWire = b;
     }
 
-    public bool isCreating() {
+    public bool IsCreating() {
         return this.creatingWire;
     }
 
@@ -101,8 +101,7 @@ public class WireCreator : MonoBehaviour {
 		this.snapped = false;
 	}
 
-    public void abortCreation() {
+    public void AbortCreation() {
         this.creatingWire = false;
     }
-
 }
