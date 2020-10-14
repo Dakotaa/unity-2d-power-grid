@@ -111,3 +111,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerObject: {fileID: 0}
   wireCreator: {fileID: 0}
+  editor: {fileID: 0}

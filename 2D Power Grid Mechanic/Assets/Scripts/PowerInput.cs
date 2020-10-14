@@ -64,6 +64,7 @@ public class PowerInput : MonoBehaviour {
 	}
 
 	private void OnMouseEnter() {
+		print("mouse entering");
 		if (editor.GetMode() == 2) {
 			if (wireCreator.IsCreating()) {
 				wireCreator.SnapToInput(this);
@@ -72,6 +73,7 @@ public class PowerInput : MonoBehaviour {
 	}
 
 	private void OnMouseExit() {
+		print("mouse exiting");
 		if (editor.GetMode() == 2) {
 			if (wireCreator.IsCreating()) {
 				wireCreator.Unsnap();

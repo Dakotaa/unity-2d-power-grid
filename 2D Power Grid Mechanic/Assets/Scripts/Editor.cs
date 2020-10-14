@@ -7,6 +7,7 @@ public class Editor : MonoBehaviour {
 	public GameObject ghostWire, ghostPowerSource, ghostSimpleNode, ghostSwitch;
 	public GameObject powerSource, simpleNode, powerSwitch;
 	private GameObject cursorGhost;
+	private bool colliding;
 	private int mode = 1;
 
     void Start() {
@@ -16,10 +17,10 @@ public class Editor : MonoBehaviour {
     void Update() {
 
 		if (Input.GetMouseButtonDown(0)) {
-			print("click");
 			if (mode > 2) {
-				print("valid mode");
-				CreateObject();
+				if (!colliding) {
+					CreateObject();
+				}
 			}
 		}
 
@@ -45,6 +46,8 @@ public class Editor : MonoBehaviour {
 
 	private void SwitchMode(int mode) {
 		if (mode > 0 && mode <= 5) {
+			if (wireCreator.IsCreating()) wireCreator.AbandonCreation();
+			colliding = false;
 			Destroy(cursorGhost);
 			this.mode = mode;
 			if (mode <= 2) {
@@ -85,5 +88,9 @@ public class Editor : MonoBehaviour {
 
 	public int GetMode() {
 		return mode;
+	}
+
+	public void SetColliding(bool colliding) {
+		this.colliding = colliding;
 	}
 }

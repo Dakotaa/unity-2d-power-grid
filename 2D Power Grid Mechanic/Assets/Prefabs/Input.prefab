@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerObject: {fileID: 0}
   wireCreator: {fileID: 0}
+  editor: {fileID: 0}
   sparkSound: {fileID: 4793345991022574964}
 --- !u!82 &4793345991022574964
 AudioSource:

@@ -6,11 +6,11 @@ public class Switch : PowerObject {
 	private bool activated = false;
 	public PowerInput input;
 	public PowerOutput output;
-	public TextMesh statusIndicator, powerIndicator;
 	public AudioSource toggle;
 
 	void Start() {
 		toggle = GetComponent<AudioSource>();
+		setColour(Color.grey);
 	}
 
 	void Update() {}
@@ -19,17 +19,13 @@ public class Switch : PowerObject {
 		powered = input.IsPowered();
 
 		if (activated) {
-			statusIndicator.text = "ON";
 			setColour(Color.green);
 		} else {
-			statusIndicator.text = "OFF";
 			setColour(Color.red);
 		}
 
 		if (this.powered) {
-			powerIndicator.text = "100%\nPOWER";
 		} else {
-			powerIndicator.text = "0%\nPOWER";
 			setColour(Color.grey);
 		}
 

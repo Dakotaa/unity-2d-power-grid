@@ -91,6 +91,11 @@ public class WireCreator : MonoBehaviour {
         this.creatingWire = false;
     }
 
+	public void AbandonCreation() {
+		this.creatingWire = false;
+		this.snapped = false;
+	}
+
 	public void SnapToInput(PowerInput input) {
 		this.snapped = true;
 		this.input = input;
@@ -101,7 +106,4 @@ public class WireCreator : MonoBehaviour {
 		this.snapped = false;
 	}
 
-    public void AbortCreation() {
-        this.creatingWire = false;
-    }
 }
